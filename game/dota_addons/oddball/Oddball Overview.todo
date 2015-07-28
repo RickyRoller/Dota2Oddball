@@ -1,0 +1,64 @@
+Oddball Overview
+Core Concepts:
+  ☐ UI
+    ☐ Design/Implement loading screen
+    ✔ Popup Text for certain events @done (15-06-29 18:33)
+    ✔ Scoring UI @done (15-06-27 20:55)
+  ✔ Audio @done (15-06-27 17:15)
+    ✔ Record Announcer Audio @done (15-06-27 17:15)
+    ✔ Add Announcer audio to events @done (15-06-27 17:15)
+  ✔ The Ball @done (15-06-22 21:20)
+    ✔ Ball is an item @done (15-06-22 21:20)
+    ✔ You can throw the ball to teammates @done (15-06-27 11:25)
+    ✔ Ball throw has cooldown @done (15-06-22 21:20)
+    ✔ Ball needs to keep heroes from going invisible @done (15-06-24 21:10)
+    ✔ Resapwn the ball if it isn't picked up in within 10 seconds @done (15-06-24 19:27)
+      ✔ Fix bug with the old ball still showing on the map @done (15-06-24 19:27)
+    ✔ Always give vision of the ball @done (15-06-27 11:25)
+    ☐ Fix the model/find a new one
+  ✔ Remove Heroes @done (15-06-24 18:49)
+    Anti-mage
+    Queen of Pain
+    Storm Spirit
+    Weaver
+    Batrider
+  ✔ Gold/XP distribution @done (15-06-24 22:25)
+    ✔ Change starting gold to 975 @done (15-06-24 23:18)
+    ✔ Start heroes out at level 5 @done (15-06-24 22:25)
+    ✔ Add experience over time @done (15-06-24 22:19)
+    ✔ Increase gold per tick @done (15-06-24 22:19)
+Buy items (pre-game):
+  ✔ Global shop @done (15-06-22 21:15)
+Fight over the ball:
+  ✔ Buffs @done (15-06-22 21:15)
+    ✔ Add Icons and sounds to buffs @done (15-06-27 17:15)
+    ☐ Jungle camps give buffs
+      ✔ Haste for the person that kills the large creep @done (15-06-22 21:21)
+      ☐ Double Damage
+    ☐ Pads on the ground give buffs
+      ✔ Create particles to indicate cooldown @done (15-06-23 22:54)
+      Ball Carrying Team
+        ☐ Heal everyone on the team
+      Non Ball Carrying Team
+        ✔ Haste buff for the team that activates it @done (15-06-22 21:38)
+  ✔ Scoring @done (15-06-24 21:11)
+    ✔ Backend @done (15-06-24 18:45)
+      ✔ Bonus points for every kill that the ball carrying team gets @done (15-06-24 18:45)
+      ✔ End game when one team hits the max points @done (15-06-22 22:53)
+  ✔ Sub-Objectives @done (15-06-27 17:15)
+    ✔ Roshan @done (15-06-27 17:15)
+      ✔ Location @done (15-06-22 21:16)
+      ✔ Respawn timer @done (15-06-25 18:38)
+      ✔ Create the ball stolen script @done (15-06-25 19:53)
+      ✔ Add audio "Ball Stolen" When rosh dies to non ball team @done (15-06-27 17:15)
+  ✔ Random location respawn @done (15-06-22 22:18)
+    ✔ Create the spawn points in hammer @done (15-06-22 22:18)
+    ✔ Write out the logic @done (15-06-22 22:18)
+
+  JUST FOR FUN GetSteamAccountID
+  
+
+Trio Team Setup:
+  ☐ Fix team names
+  ☐ Fix team icons
+  ☐ Reset panorama with team color styles

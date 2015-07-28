@@ -1,0 +1,7 @@
+"DOTAAbilities"
+{
+	// Disable items in the shop
+	"item_courier" 			"REMOVE"
+	"item_tpscroll" 		"REMOVE"
+	"item_flying_courier" 	"REMOVE"
+}

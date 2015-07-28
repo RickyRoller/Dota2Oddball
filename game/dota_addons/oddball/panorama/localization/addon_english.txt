@@ -1,0 +1,18 @@
+"addon"
+{
+	"addonname"										"Oddball"
+	"oddball_game_info_header_objective"			"Objective:"
+	"oddball_brief_description"						"Hold onto the ball for 250 seconds! Slay your enemies and Roshan while holding the ball for bonus points!"
+	"oddball_game_info_header_how_to_play"			"How To Play:"
+	"oddball_game_info_ball"						"Grab the ball and hold on! The ball gives the holder bonus damage but reduces their resistance and armor."
+	"oddball_game_info_camps"						"Killing creeps camps will give the slayer a buff."
+	"oddball_game_info_pads"						"Step on the pads to give your whole team an advantage."
+	"oddball_game_info_roshan"						"If you have the ball, Roshan gives bonus points. If you don't, rosh will steal the ball from the other team and place it at your feet."
+	"oddball_game_info_tips_header"					"Tips:"
+	"oddball_game_info_tip01"						"Experience and gold are awarded every second. Keep spending those points!"
+	"oddball_game_info_tip02"						"The Ball can be passed to your team mates."
+	"oddball_game_info_tip03"						"The Ball is always visible on the minimap. Mapawareness scrubs!"
+	"oddball_game_info_tip04"						"Getting kills while your team has the ball awards bonus gold and points."
+	"oddball_game_info_tip05"						"The shop is global, you can buy items from anywhere!"
+}
+

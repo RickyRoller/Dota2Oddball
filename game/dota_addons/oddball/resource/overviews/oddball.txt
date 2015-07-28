@@ -1,0 +1,8 @@
+oddball
+{
+	material materials/overviews/oddball.vmat
+	pos_x -6528
+	pos_y 7622
+	scale 12.563
+}
+

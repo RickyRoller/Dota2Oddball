@@ -1,0 +1,11 @@
+Oddball Overview
+-Choose Heroes
+-Buy items (pre-game)
+-Fight over the ball
+	-Buffs
+		-Jungle camps give buffs
+		-Pads on the ground give buffs
+	-Scoring
+	-Sub-Objectives
+		-Roshan
+	-Random location respawn

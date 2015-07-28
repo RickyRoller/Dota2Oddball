@@ -1,0 +1,8 @@
+oddball_ffa
+{
+	material materials/overviews/oddball_ffa.vmat
+	pos_x -6528
+	pos_y 7622
+	scale 12.563
+}
+

@@ -1,0 +1,167 @@
+// Dota Heroes File
+"DOTAAbilities"
+{
+
+	// Custom Abilities
+	"npc_neutral_jungle_buff"
+	{
+		"precache" {
+			"particle" "particles\units\heroes\hero_wisp\wisp_guardian_d.vpcf"
+		}
+		"BaseClass"             		"ability_datadriven"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"Modifiers"
+        {
+        	"modifier_give_buff_on_death"
+        	{
+        		"Passive" "1"
+        		"IsHidden" "1"
+
+        		"EffectName" "particles\units\heroes\hero_wisp\wisp_guardian_d.vpcf"
+        		"EffectAttachType" "follow_origin"
+
+        		"OnDeath"
+        		{
+	        		"RunScript"
+	        		{
+						"ScriptFile"		"scripts/vscripts/jungle_creep_abilities.lua"
+						"Function"			"CastOnDeath"
+	        		}
+	        	}
+        	}
+
+
+        	"modifier_haste_buff"
+        	{
+        		"Passive" "1"
+        		"IsHidden" "0"
+        		"Duration" "10"
+				"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"EffectName" 			"particles\generic_gameplay\rune_haste_owner.vpcf"
+				"EffectAttachType" 		"follow_origin"
+				"TextureName"			"rune_haste"
+				
+				"OnCreated" {
+					"FireSound"{
+						"EffectName" "rune_haste"
+						"Target" "CASTER"
+					}
+				}
+
+        		"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" 		"522"
+				}
+        	}
+        }
+	}
+
+
+	//Abilities that the buff pads caste
+	"buff_pad_abilities"
+	{
+		"BaseClass"             		"ability_datadriven"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"Modifiers"
+        {
+
+        	"modifier_team_haste"
+        	{
+        		"Passive" "1"
+        		"IsHidden" "0"
+        		"Duration" "10"
+				"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"EffectName" 			"particles\generic_gameplay\rune_haste_owner.vpcf"
+				"EffectAttachType" 		"follow_origin"
+				"TextureName"			"rune_haste"	
+
+				"OnCreated" {
+					"FireSound"{
+						"EffectName" 	"items/rune_haste"
+						"Target" 		"CASTER"
+					}
+				}
+
+        		"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" 		"450"
+				}
+        	}
+        }
+	}
+
+	"ob_roshan_mods"
+	{
+		"BaseClass"             		"ability_datadriven"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"Modifiers"
+        {
+
+        	"modifier_on_roshan_death"
+        	{
+        		"Passive" "1"
+        		"IsHidden" "1"
+
+        		"OnDeath"
+        		{
+	        		"RunScript"
+	        		{
+						"ScriptFile"		"scripts/vscripts/jungle_creep_abilities.lua"
+						"Function"			"OnRoshanDeath"
+	        		}
+	        	}
+        	}
+        }
+	}
+
+	"ob_creep_buff_haste"
+	{
+		"BaseClass"             		"ability_datadriven"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityCastRange"				"700"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"				"522"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"17.0"
+			}
+		}
+	}
+}

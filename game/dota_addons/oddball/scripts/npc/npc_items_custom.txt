@@ -1,0 +1,220 @@
+"DOTAAbilities"
+{
+	"item_oddball"
+	{
+		"precache"
+		{
+		    "model"     	"models\heroes\necrolyte\necrolyte_skull.vmdl"
+		    "particle"		"particles/oddball_indicator.vpcf"
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+            "particle"      "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf"
+            "particle"      "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_explosion.vpcf"
+            "particle"      "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_debuff.vpcf"
+            "particle"      "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_warmup.vpcf"
+            "particle"      "particles/units/heroes/hero_vengeful/vengeful_wave_of_terror.vpcf"
+		}
+		"ID"						"1001"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"					"item_datadriven"
+		"Model"						"models\oddball\oddball.vmdl"
+		"AbilityTextureName"		"necrolyte_death_pulse"	
+		"ModelScale" 				"3"
+		"Effect"					"particles/oddball_indicator.vpcf"
+ 
+ 
+		// Item Info
+		//---------------------------------------------------------------------------------------------------------
+		"ItemCost"						"99999"
+		"ItemPurchasable"				"0"
+		"ItemDroppable"					"0"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemQuality"					"epic"
+		"ItemShopTags"					"damage"
+		"ItemAliases"					"oddball"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+
+		// Throw the ball
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityManaCost" 				"0"
+		"AbilityCastRange"      		"2000"
+		"AbilityCastPoint"     	 		"0.3"
+		"AbilityCooldown"       		"15.0"
+
+        "OnAbilityPhaseStart"
+        {
+            "FireEffect"
+            {
+                "EffectName"        "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_warmup.vpcf"
+                "EffectAttachType"  "start_at_customorigin"
+                
+                "ControlPointEntities"
+                {
+                    "CASTER"        "attach_attack1"
+                }
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "LinearProjectile"
+            {
+                "Target"            "POINT"
+                "EffectName"        "particles/units/heroes/hero_vengeful/vengeful_wave_of_terror.vpcf"
+                //"EffectName"        "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf"
+                "StartRadius"		"85"
+                "EndRadius"			"85"
+                "FixedDistance"		"1200"
+                "StartPosition"		"attach_attack1"
+                "TargetTeams"		"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    			"TargetTypes"    	"DOTA_UNIT_TARGET_HERO"
+    			"TargetFlags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "ProvidesVision"    "0"
+                "HasFrontalCone"    "0"
+                "VisionRadius"      "100"
+                "MoveSpeed"         "1000"
+            }
+
+            "RunScript"
+            {
+            	"ScriptFile"		"scripts/vscripts/item_functions.lua"
+            	"Function"			"CalcBallDropLocation"
+            }
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_throw_ball_phased"
+				"Target"		"CASTER"
+			}
+
+            "FireSound"
+            {
+                "EffectName"    "Hero_SkeletonKing.Hellfire_Blast"
+                "Target"                "CASTER"
+            }
+        }
+
+
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/item_functions.lua"
+				"Function"			"PassBall"
+			}
+
+            "DeleteOnHit"                   "1"
+
+            "FireSound"
+            {
+                "EffectName"    "Hero_SkeletonKing.Hellfire_BlastImpact"
+                "Target"                "CASTER"
+            }                
+
+            "FireEffect"
+            {
+                "EffectName"            "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_explosion.vpcf"
+                "EffectAttachType"      "follow_origin"
+                "Target"                        "TARGET"
+
+                //CP3 needs to be attached to the target hit
+                "ControlPointEntities"
+                {
+                        "TARGET"                "attach_hitloc"
+                        "TARGET"                "attach_hitloc"
+                        "TARGET"                "attach_hitloc"
+                        "TARGET"                "attach_hitloc"
+                }
+            }
+		}
+
+		"OnProjectileFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/item_functions.lua"
+				"Function"			"BallMissed"
+			}
+
+            "DeleteOnHit"                   "1"
+
+		}
+
+		"OnOwnerDied"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/item_functions.lua"
+				"Function"			"DropBallOnDeath"
+			}
+		}
+ 
+		"Modifiers"
+		{
+			"modifier_oddball"
+			{
+				"Passive"			"1"
+				"isHidden"			"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" 		"%bonus_damage"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" 	"%magic_res_reduction"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" 		"%armor_reduction"
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_DISABLED"
+					//"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+			    "EffectName"		"particles/oddball_indicator.vpcf"
+			    "EffectAttachType" 	"follow_origin"
+
+		    	"ThinkInterval" "1"
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/item_functions.lua"
+						"Function"		"IncrementScore"
+					}
+				}
+			}
+
+			"modifier_throw_ball_phased"
+				{
+					"IsHidden"	"1"	
+					"Duration"	"0.1"
+					"States"
+					{
+						"MODIFIER_STATE_OUT_OF_GAME"	"MODIFIER_STATE_VALUE_ENABLED"
+					}
+				}
+		}
+		// Special	
+		//---------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"50"
+			}
+			"02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "magic_res_reduction"   "-15"
+	        }
+			"03"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "armor_reduction"       "-4"
+	        }
+		}
+	}
+}
